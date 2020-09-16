@@ -68,10 +68,7 @@ class AfonyaCustomersIP
 
     public static function checkIPTableAgent()
     {
-        $arIPs = DataTable::getList()->fetchAll();
-        $newIPs = array_filter($arIPs, function ($item) {
-            return empty($item['DATA']);
-        });
+        $newIPs = DataTable::getList(['filter' => ['DATA' => NULL]])->fetchAll();
 
         if (!empty($newIPs)) {
             foreach ($newIPs as $IP) {
