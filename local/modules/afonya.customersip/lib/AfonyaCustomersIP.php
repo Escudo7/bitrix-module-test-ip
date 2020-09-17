@@ -89,7 +89,7 @@ class AfonyaCustomersIP
                         'IP' => $IP['ID'],
                         'ORDER_ID' => $IP['ORDER_ID']
                     ];
-                    $event = new \Bitrix\Main\Event("afonya.customersip", "OnIPInformGet", [$eventData]);
+                    $event = new \Bitrix\Main\Event('afonya.customersip', 'OnIPInformGet', [$eventData]);
                     $event->send();
                 }
             }

@@ -6,7 +6,7 @@ use \Bitrix\Main\ModuleManager;
 Class Afonya_CustomersIP extends CModule
 {
 
-    var $MODULE_ID = "afonya.customersip";
+    var $MODULE_ID = 'afonya.customersip';
     var $MODULE_VERSION;
     var $MODULE_VERSION_DATE;
     var $MODULE_NAME;
@@ -16,10 +16,10 @@ Class Afonya_CustomersIP extends CModule
     function __construct()
     {
         //$arModuleVersion = array();
-        $this->MODULE_VERSION = "0.0.1";
-        $this->MODULE_VERSION_DATE = "15.09.2020";
-        $this->MODULE_NAME = "Тестовый модуль управления IP покупателей";
-        $this->MODULE_DESCRIPTION = "Тестовый модуль для интернет-магазина Афоня по управлению IP покупателей";
+        $this->MODULE_VERSION = '0.0.1';
+        $this->MODULE_VERSION_DATE = '15.09.2020';
+        $this->MODULE_NAME = 'Тестовый модуль управления IP покупателей';
+        $this->MODULE_DESCRIPTION = 'Тестовый модуль для интернет-магазина Афоня по управлению IP покупателей';
     }
 
     function DoInstall()
@@ -28,21 +28,21 @@ Class Afonya_CustomersIP extends CModule
         $this->InstallEvents();
         $this->InstallFiles();
         RegisterModuleDependences(
-            "sale",
-            "OnOrderAdd",
+            'sale',
+            'OnOrderAdd',
             $this->MODULE_ID,
-            "\Afonya\CustomersIP\AfonyaCustomersIP",
-            "onOrderAddHandler"
+            '\Afonya\CustomersIP\AfonyaCustomersIP',
+            'onOrderAddHandler'
         );
         RegisterModuleDependences(
-            "afonya.customersip",
-            "OnIPInformGet",
+            'afonya.customersip',
+            'OnIPInformGet',
             $this->MODULE_ID,
-            "\Afonya\CustomersIP\AfonyaCustomersIP",
-            "onIPInformGetHandler"
+            '\Afonya\CustomersIP\AfonyaCustomersIP',
+            'onIPInformGetHandler'
         );
         $this->registerAgent();
-        \Bitrix\Main\ModuleManager::RegisterModule("afonya.customersip");
+        \Bitrix\Main\ModuleManager::RegisterModule('afonya.customersip');
         return true;
     }
 
@@ -52,21 +52,21 @@ Class Afonya_CustomersIP extends CModule
         $this->UnInstallEvents();
         $this->UnInstallFiles();
         UnRegisterModuleDependences(
-            "sale",
-            "OnOrderAdd",
+            'sale',
+            'OnOrderAdd',
             $this->MODULE_ID,
-            "\Afonya\CustomersIP\AfonyaCustomersIP",
-            "onOrderAddHandler"
+            '\Afonya\CustomersIP\AfonyaCustomersIP',
+            'onOrderAddHandler'
         );
         UnRegisterModuleDependences(
-            "afonya.customersip",
-            "OnIPInformGet",
+            'afonya.customersip',
+            'OnIPInformGet',
             $this->MODULE_ID,
-            "\Afonya\CustomersIP\AfonyaCustomersIP",
-            "onIPInformGetHandler"
+            '\Afonya\CustomersIP\AfonyaCustomersIP',
+            'onIPInformGetHandler'
         );
         $this->UnRegisterAgent();
-        \Bitrix\Main\ModuleManager::UnRegisterModule("afonya.customersip");
+        \Bitrix\Main\ModuleManager::UnRegisterModule('afonya.customersip');
         return true;
     }
 
@@ -74,7 +74,7 @@ Class Afonya_CustomersIP extends CModule
     {
         global $DB;
         $this->errors = false;
-        $this->errors = $DB->RunSQLBatch($_SERVER['DOCUMENT_ROOT'] . "/local/modules/afonya.customersip/install/db/install.sql");
+        $this->errors = $DB->RunSQLBatch($_SERVER['DOCUMENT_ROOT'] . '/local/modules/afonya.customersip/install/db/install.sql');
         if (!$this->errors) {
             return true;
         } else
@@ -85,7 +85,7 @@ Class Afonya_CustomersIP extends CModule
     {
         global $DB;
         $this->errors = false;
-        $this->errors = $DB->RunSQLBatch($_SERVER['DOCUMENT_ROOT'] . "/local/modules/afonya.customersip/install/db/uninstall.sql");
+        $this->errors = $DB->RunSQLBatch($_SERVER['DOCUMENT_ROOT'] . '/local/modules/afonya.customersip/install/db/uninstall.sql');
         if (!$this->errors) {
             return true;
         } else
@@ -111,10 +111,10 @@ Class Afonya_CustomersIP extends CModule
             $sitesList[] = $site['LID'];
         }
 
-        $textMessage = '<!doctype html>
-<html lang="ru">
+        $textMessage = "<!doctype html>
+<html lang='ru'>
 <head>
-  <meta charset="utf-8">
+  <meta charset='utf-8'>
   <title>Получена информация о новом IP покупателя</title>
 </head>
 <body>
@@ -129,7 +129,7 @@ Class Afonya_CustomersIP extends CModule
  
 <p>Письмо сформировано автоматически.</p>
 </body>
-</html>';
+</html>";
 
         $fields = [
             'ACTIVE' => 'Y',
@@ -153,7 +153,7 @@ Class Afonya_CustomersIP extends CModule
     function UnInstallEvents()
     {
         $et = new CEventType;
-        $et->Delete("NEW_IP_INFORM");
+        $et->Delete('NEW_IP_INFORM');
 
         $by = 'NEW_IP_INFORM';
         $order = 'desc';
@@ -185,11 +185,11 @@ Class Afonya_CustomersIP extends CModule
     {
         \CAgent::AddAgent(
             "\\Afonya\\CustomersIP\\AfonyaCustomersIP::checkIPTableAgent();",
-            "afonya.customersip",
-            "N",
+            'afonya.customersip',
+            'N',
             60,
-            "",
-            "Y"
+            '',
+            'Y'
         );
     }
 
@@ -197,7 +197,7 @@ Class Afonya_CustomersIP extends CModule
     {
         \CAgent::RemoveAgent(
             "\\Afonya\\CustomersIP\\AfonyaCustomersIP::checkIPTableAgent();",
-            "afonya.customersip"
+            'afonya.customersip'
         );
     }
 }
