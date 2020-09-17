@@ -18,8 +18,8 @@ Class Afonya_CustomersIP extends CModule
         //$arModuleVersion = array();
         $this->MODULE_VERSION = '0.0.1';
         $this->MODULE_VERSION_DATE = '15.09.2020';
-        $this->MODULE_NAME = 'Тестовый модуль управления IP покупателей';
-        $this->MODULE_DESCRIPTION = 'Тестовый модуль для интернет-магазина Афоня по управлению IP покупателей';
+        $this->MODULE_NAME = 'РўРµСЃС‚РѕРІС‹Р№ РјРѕРґСѓР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ IP РїРѕРєСѓРїР°С‚РµР»РµР№';
+        $this->MODULE_DESCRIPTION = 'РўРµСЃС‚РѕРІС‹Р№ РјРѕРґСѓР»СЊ РґР»СЏ РёРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅР° РђС„РѕРЅСЏ РїРѕ СѓРїСЂР°РІР»РµРЅРёСЋ IP РїРѕРєСѓРїР°С‚РµР»РµР№';
     }
 
     function DoInstall()
@@ -98,7 +98,7 @@ Class Afonya_CustomersIP extends CModule
         $et->Add([
             "LID"           => SITE_ID,
             "EVENT_NAME"    => 'NEW_IP_INFORM',
-            "NAME"          => 'Добавлена информация по IP нового пользователя',
+            "NAME"          => 'Р”РѕР±Р°РІР»РµРЅР° РёРЅС„РѕСЂРјР°С†РёСЏ РїРѕ IP РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ',
             "DESCRIPTION"   => ''
         ]);
 
@@ -115,19 +115,19 @@ Class Afonya_CustomersIP extends CModule
 <html lang='ru'>
 <head>
   <meta charset='utf-8'>
-  <title>Получена информация о новом IP покупателя</title>
+  <title>РџРѕР»СѓС‡РµРЅР° РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РЅРѕРІРѕРј IP РїРѕРєСѓРїР°С‚РµР»СЏ</title>
 </head>
 <body>
-<h2>Добрый день!</h2>
+<h2>Р”РѕР±СЂС‹Р№ РґРµРЅСЊ!</h2>
  
-<p>Получена информация о новом IP покупателя</p>
+<p>РџРѕР»СѓС‡РµРЅР° РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РЅРѕРІРѕРј IP РїРѕРєСѓРїР°С‚РµР»СЏ</p>
 
-<p>Номер заказа - #ORDER_ID# </p>
-<p>IP покупателя #IP# </p>
+<p>РќРѕРјРµСЂ Р·Р°РєР°Р·Р° - #ORDER_ID# </p>
+<p>IP РїРѕРєСѓРїР°С‚РµР»СЏ #IP# </p>
  
 #IP_INFORM#
  
-<p>Письмо сформировано автоматически.</p>
+<p>РџРёСЃСЊРјРѕ СЃС„РѕСЂРјРёСЂРѕРІР°РЅРѕ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё.</p>
 </body>
 </html>";
 
@@ -138,7 +138,7 @@ Class Afonya_CustomersIP extends CModule
             'EMAIL_FROM' => "#DEFAULT_EMAIL_FROM#",
             'EMAIL_TO' => "#EMAIL_TO#",
             'BCC' => '',
-            'SUBJECT' => 'Получена информация о новом IP покупателя',
+            'SUBJECT' => 'РџРѕР»СѓС‡РµРЅР° РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РЅРѕРІРѕРј IP РїРѕРєСѓРїР°С‚РµР»СЏ',
             'BODY_TYPE' => 'html',
             'MESSAGE' => $textMessage
         ];

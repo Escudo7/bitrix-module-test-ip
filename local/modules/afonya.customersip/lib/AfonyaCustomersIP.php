@@ -44,8 +44,8 @@ class AfonyaCustomersIP
     private function prepareDataForEmail($data) {
         $table = '<table>';
         $table .= '<tr>';
-        $table .= '<th>Название параметра</th>';
-        $table .= '<th>Значение параметра</th>';
+        $table .= '<th>РќР°Р·РІР°РЅРёРµ РїР°СЂР°РјРµС‚СЂР°</th>';
+        $table .= '<th>Р—РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР°</th>';
         $table .= '</tr>';
 
         foreach ($data as $item) {
