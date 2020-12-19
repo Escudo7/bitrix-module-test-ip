@@ -3,26 +3,23 @@ declare(strict_types=1);
 
 namespace Afonya\CustomersIP;
 
-use Afonya\CustomersIP\DataTable;
-use Afonya\CustomersIP\SendingEmail;
-use Bitrix\Main\Event;
+use Bitrix\Main\Service\GeoIp\Manager;
 
 class EventHandlers
 {
-    public function onSaleOrderSavedHandler($order, $values, $isNew) {
+    public static function onSaleOrderSavedHandler($order, $values, $isNew) {
 
-
-        if ($isNew) {
-            $ip = \Bitrix\Main\Service\GeoIp\Manager::getRealIp();
-file_put_contents(__DIR__ . '/values', print_r($values, true));
-            DataTable::add([
-                'ORDER_ID' => $order->getId(),
-                'IP' => $ip,
-            ]);
+        if (!$isNew) {
+            return;
         }
+
+        DataTable::add([
+            'ORDER_ID' => $order->getId(),
+            'IP' => Manager::getRealIp(),
+        ]);
     }
 
-    public function onIPInformGetHandler($data) {
+    public static function onIPInformGetHandler($data) {
         SendingEmail::sendEmailAboutIP($data);
     }
 }
