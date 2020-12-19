@@ -3,23 +3,25 @@ declare(strict_types=1);
 
 namespace Afonya\CustomersIP;
 
+use Bitrix\Main\Mail\Event;
+use Bitrix\Main\SiteTable;
+
 class SendingEmail
 {
     public static function sendEmailAboutIP($data)
     {
         $dataForEmail = self::prepareIPInformation($data['IP_INFORM']);
-        file_put_contents(__DIR__ . '/data', print_r($dataForEmail, true));
-        $rsSites = \Bitrix\Main\SiteTable::getList(['select' => ['LID'], 'filter' => ['ACTIVE' => 'Y']]);
-        $arSites = $rsSites->fetchAll();
-        $sitesList = [];
 
-        foreach ($arSites as $site) {
-            $sitesList[] = $site['LID'];
+        $sites = SiteTable::getList(['select' => ['LID'], 'filter' => ['ACTIVE' => 'Y']])->fetchAll();
+        $siteList = [];
+
+        foreach ($sites as $site) {
+            $siteList[] = $site['LID'];
         }
 
-        \Bitrix\Main\Mail\Event::send([
+        Event::send([
             'EVENT_NAME' => 'NEW_IP_INFORM',
-            'LID' => $sitesList,
+            'LID' => $siteList,
             'C_FIELDS' => [
                 'ORDER_ID' => $data['ORDER_ID'],
                 'IP' => $data['IP'],
